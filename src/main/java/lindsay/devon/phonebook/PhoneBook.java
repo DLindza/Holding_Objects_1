@@ -21,15 +21,22 @@ public class PhoneBook {
     }
 
     public void addIndividualPhoneNumber(String name, String phonenumber) {
+        if (phoneBook.containsKey(name)){
         System.out.println(phonenumber + " has been added to " + name + "'s record.");
         List<String> newNumber = phoneBook.get(name);
-        newNumber.add(phonenumber);
-
+        newNumber.add(phonenumber); }
+        else {
+            System.out.println("Sorry that person does not currently exist.");
+        }
     }
 
     public void removeIndividualPhoneNumber(String name, String phonenumber) {
-        System.out.println(phonenumber + " has been removed from your phonebook");
-         phoneBook.remove(name,phonenumber);
+       if (phoneBook.containsKey(name) && phoneBook.containsValue(phonenumber)) {
+           System.out.println(phonenumber + " has been removed from your phonebook");
+           phoneBook.remove(name, phonenumber);
+       } else {
+           System.out.println("Sorry, that person's record could not be found.");
+       }
     }
 
     public List<String> lookUp(String name) {
